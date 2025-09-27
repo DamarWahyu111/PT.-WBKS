@@ -45,7 +45,7 @@ window.addEventListener("scroll", () => {
 (function () {
   const data = [
     {
-      img: "/images/4.png",
+      img: "/PT.-WBKS/images/4.png",
       title: "WINS HOUSE",
       year: "MODULARR BUILDING OF PREFABRICATION",
     },
