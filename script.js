@@ -933,4 +933,69 @@ function closeModal() {
     if (btn) btn.classList.add('active');  
   }
 
+// ===============================
+// LIGHTBOX untuk grid MODELS
+// ===============================
+(function(){
+  const grid = document.getElementById('modelsGrid');
+  if(!grid) return;
+
+  const lb = document.getElementById('pdLightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbClose = document.getElementById('lbClose');
+  const lbPrev = document.getElementById('lbPrev');
+  const lbNext = document.getElementById('lbNext');
+  const lbCounter = document.getElementById('lbCounter');
+
+  // kumpulkan semua anchor model (urut tampil)
+  const items = Array.from(grid.querySelectorAll('.model-card'));
+  let idx = 0;
+
+  // buka lightbox
+  function open(i){
+    idx = (i + items.length) % items.length;
+    const href = items[idx].getAttribute('href');
+    lbImg.src = href;
+    lb.classList.add('show');
+    lb.setAttribute('aria-hidden', 'false');
+    updateCounter();
+  }
+
+  // tutup
+  function close(){
+    lb.classList.remove('show');
+    lb.setAttribute('aria-hidden', 'true');
+    lbImg.src = '';
+  }
+
+  // navigasi
+  function next(d=1){ open(idx + d); }
+  function updateCounter(){ lbCounter.textContent = (idx+1) + '/' + items.length; }
+
+  // event: klik kartu
+  items.forEach((a, i) => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      open(i);
+    });
+  });
+
+  // event: tombol
+  lbClose.addEventListener('click', close);
+  lbPrev.addEventListener('click', () => next(-1));
+  lbNext.addEventListener('click', () => next(1));
+
+  // klik backdrop menutup
+  lb.addEventListener('click', (e) => {
+    if (e.target === lb) close();
+  });
+
+  // keyboard
+  window.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('show')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') next(-1);
+    if (e.key === 'ArrowRight') next(1);
+  });
+})();
 
