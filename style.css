@@ -346,7 +346,7 @@ nav-left,
   margin-top: 76px;
   position: relative;
   overflow: hidden;
-  height: 90vh;
+  height: 100vh;
   min-height: 460px;
   background: #111;
 }
@@ -1716,13 +1716,12 @@ nav-left,
     height: 200px;
   }
 }
-
 /* ======================================
-   PRODUCT DETAIL PAGE (Classic)
+   FLAT PACK «CLASSIC» PAGE
    ====================================== */
 
-/* // breadcrumb */
-.pd-crumbs {
+/* ---------- Crumbs & Heading ---------- */
+.flatpack-classic-crumbs {
   display: flex;
   gap: 8px;
   align-items: center;
@@ -1730,108 +1729,252 @@ nav-left,
   color: var(--muted);
   margin-bottom: 10px;
 }
-.pd-crumbs a {
+.flatpack-classic-crumbs a {
   color: var(--brand);
-  text-decoration: none;
   font-weight: 600;
+  text-decoration: none;
 }
-
-/* // judul + pager */
-.pd-head {
+.flatpack-classic-head {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 18px;
 }
-.pd-title {
+.flatpack-classic-title {
   margin: 0;
   font-size: 42px;
   line-height: 1.1;
-  letter-spacing: 0.2px;
   color: #0f172a;
 }
-.pd-pager {
+.flatpack-classic-pager {
   display: flex;
   gap: 10px;
 }
-.pd-pager a {
+.flatpack-classic-pager.bottom {
+  margin-top: 18px;
+}
+.flatpack-classic-pager a {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 8px 12px;
   border-radius: 10px;
-  text-decoration: none;
   font-weight: 800;
   background: var(--bg-tertiary);
   color: #0f172a;
   border: 1px solid var(--border-color);
+  text-decoration: none;
 }
-.pd-pager a:hover {
+.flatpack-classic-pager a:hover {
   background: #e9eef7;
 }
 
-/* // 2 kolom teks */
-.pd-two-col {
+/* ---------- 2 cols text ---------- */
+.flatpack-classic-cols {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 28px;
   margin-bottom: 26px;
 }
-.pd-col p {
+.flatpack-classic-col p {
   margin: 0 0 14px;
   color: #374151;
 }
 
-/* // subjudul MODELS */
-.pd-subtitle {
+/* ---------- HERO slider ---------- */
+.flatpack-classic-hero {
+  position: relative;
+  margin: 4px 0 18px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #0b1f3f;
+}
+.flatpack-classic-hero-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.35s ease;
+}
+.flatpack-classic-hero img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  flex: 0 0 100%;
+  display: block;
+  filter: brightness(0.98);
+}
+.flatpack-classic-hero-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #0f172a;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  display: grid;
+  place-items: center;
+}
+.flatpack-classic-hero-nav.prev {
+  left: 12px;
+}
+.flatpack-classic-hero-nav.next {
+  right: 12px;
+}
+.flatpack-classic-hero-nav:hover {
+  filter: brightness(0.95);
+}
+
+/* ---------- Subtitles ---------- */
+.flatpack-classic-subtitle {
   margin: 18px 0 12px;
   font-size: 28px;
   letter-spacing: 0.5px;
   color: #0f172a;
 }
 
-/* // grid model card */
-.models-grid {
+/* ---------- MODELS grid ---------- */
+.flatpack-classic-models {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
-.model-card {
+.flatpack-classic-model {
   position: relative;
   display: block;
   overflow: hidden;
   border-radius: 12px;
   background: #fff;
   box-shadow: var(--shadow-md);
+  text-decoration: none;
 }
-.model-card img {
+.flatpack-classic-model img {
   display: block;
   width: 100%;
   height: 220px;
   object-fit: cover;
   transition: transform 0.25s ease;
 }
-.model-card:hover img {
-  transform: scale(1.03);
+.flatpack-classic-model:hover img {
+  transform: scale(1.04);
 }
 
-/* // badge ZOOM */
-.zoom-badge {
+/* // overlay + badge ZOOM (muncul saat hover, di tengah) */
+.flatpack-classic-mask {
   position: absolute;
-  inset: auto 10px 10px auto;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(7, 19, 40, 0);
+  transition: background 0.2s ease;
+}
+.flatpack-classic-zoom {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 999px;
   background: rgba(15, 43, 85, 0.92);
   color: #fff;
-  font-size: 12px;
-  letter-spacing: 0.4px;
   font-weight: 800;
-  padding: 8px 12px;
-  border-radius: 999px;
+  letter-spacing: 0.4px;
+  font-size: 12px;
+  transform: scale(0.92);
+  opacity: 0;
+  transition: 0.2s ease;
   box-shadow: var(--shadow-sm);
 }
+.flatpack-classic-model:hover .flatpack-classic-mask {
+  background: rgba(7, 19, 40, 0.28);
+}
+.flatpack-classic-model:hover .flatpack-classic-zoom {
+  opacity: 1;
+  transform: scale(1);
+}
 
-/* // lightbox */
-.pd-lightbox {
+/* ---------- ASSEMBLY banner (nempel/nyambung) ---------- */
+.flatpack-classic-assembly {
+  position: relative;
+  margin-top: 15px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.flatpack-classic-assembly-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(0.1) contrast(1.02) brightness(0.9);
+}
+.flatpack-classic-assembly-inner {
+  position: relative;
+  z-index: 1;
+  padding: 18px;
+  backdrop-filter: saturate(130%) blur(0px);
+}
+.flatpack-classic-assembly-title {
+  margin: 0 0 10px;
+  font-size: 26px;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+.flatpack-classic-assembly-list {
+  display: grid;
+  gap: 10px;
+  max-width: 620px;
+}
+.flatpack-classic-ai {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: rgba(19, 64, 28, 0.92);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+  font-weight: 700;
+}
+.flatpack-classic-ai:hover {
+  filter: brightness(1.05);
+}
+
+/* ---------- SUPPLY OPTIONS ---------- */
+.flatpack-classic-supply {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 12px;
+}
+.flatpack-classic-supply-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.flatpack-classic-supply-card img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+}
+.flatpack-classic-supply-body {
+  padding: 16px 18px 18px;
+}
+.flatpack-classic-supply-body h3 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  letter-spacing: 0.3px;
+}
+.flatpack-classic-supply-body p {
+  margin: 0;
+  color: #374151;
+}
+
+/* ---------- LIGHTBOX ---------- */
+.flatpack-classic-lightbox {
   position: fixed;
   inset: 0;
   z-index: 1400;
@@ -1840,18 +1983,16 @@ nav-left,
   align-items: center;
   justify-content: center;
 }
-.pd-lightbox.show {
+.flatpack-classic-lightbox.show {
   display: flex;
 }
-.pd-lightbox img {
+.flatpack-classic-lightbox img {
   max-width: 96vw;
   max-height: 92vh;
   border-radius: 10px;
   box-shadow: var(--shadow-lg);
 }
-
-/* // tombol lightbox */
-.lb-close {
+.flatpack-classic-lb-close {
   position: absolute;
   top: 16px;
   right: 18px;
@@ -1861,7 +2002,7 @@ nav-left,
   font-size: 34px;
   cursor: pointer;
 }
-.lb-nav {
+.flatpack-classic-lb-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -1876,16 +2017,16 @@ nav-left,
   display: grid;
   place-items: center;
 }
-.lb-prev {
+.flatpack-classic-lb-nav.prev {
   left: 18px;
 }
-.lb-next {
+.flatpack-classic-lb-nav.next {
   right: 18px;
 }
-.lb-nav:hover {
+.flatpack-classic-lb-nav:hover {
   background: rgba(255, 255, 255, 0.25);
 }
-.lb-counter {
+.flatpack-classic-lb-counter {
   position: absolute;
   bottom: 14px;
   left: 50%;
@@ -1898,33 +2039,138 @@ nav-left,
   font-size: 13px;
 }
 
-/* // responsif */
+/* ---------- Responsif ---------- */
 @media (max-width: 1024px) {
-  .pd-two-col {
+  .flatpack-classic-cols {
+    grid-template-columns: 1fr;
+  }
+  .flatpack-classic-hero img {
+    height: 360px;
+  }
+}
+@media (max-width: 900px) {
+  .flatpack-classic-models {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .flatpack-classic-title {
+    font-size: 36px;
+  }
+  .flatpack-classic-supply {
+    grid-template-columns: 1fr;
+  }
+  .flatpack-classic-supply-card img {
+    height: 280px;
+  }
+}
+@media (max-width: 560px) {
+  .flatpack-classic-models {
+    grid-template-columns: 1fr;
+  }
+  .flatpack-classic-hero img {
+    height: 260px;
+  }
+  .flatpack-classic-head {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* ===== LIGHTBOX ===== */
+.flatpack-classic-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  display: none;
+  background: rgba(0, 0, 0, 0.85);
+  align-items: center;
+  justify-content: center;
+}
+.flatpack-classic-lightbox.show {
+  display: flex;
+}
+.flatpack-classic-lightbox img {
+  max-width: 96vw;
+  max-height: 92vh;
+  border-radius: 10px;
+  box-shadow: var(--shadow-lg);
+}
+.flatpack-classic-lb-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 34px;
+  cursor: pointer;
+}
+.flatpack-classic-lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.flatpack-classic-lb-nav.prev {
+  left: 18px;
+}
+.flatpack-classic-lb-nav.next {
+  right: 18px;
+}
+.flatpack-classic-lb-nav:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+.flatpack-classic-lb-counter {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+/* ===== responsive ===== */
+@media (max-width: 1024px) {
+  .flatpack-classic-cols {
     grid-template-columns: 1fr;
   }
 }
 @media (max-width: 900px) {
-  .models-grid {
+  .flatpack-classic-models {
     grid-template-columns: repeat(2, 1fr);
   }
-  .model-card img {
+  .flatpack-classic-model img {
     height: 200px;
   }
-  .pd-title {
+  .flatpack-classic-title {
     font-size: 36px;
   }
 }
 @media (max-width: 560px) {
-  .models-grid {
+  .flatpack-classic-models {
     grid-template-columns: 1fr;
   }
-  .model-card img {
+  .flatpack-classic-model img {
     height: 200px;
   }
-  .pd-head {
+  .flatpack-classic-head {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+  }
+  .flatpack-classic-hero img {
+    max-height: 56vh;
   }
 }

@@ -19,7 +19,7 @@
     </ul>
     </div>
      <div class="center-logo">
-      <a href="index.html"><img src="/PT.-WBKS/images/4.png" alt="Logo" class="logo"></a>
+      <a href="index.html"><img src="/images/4.png" alt="Logo" class="logo"></a>
     </div>
     <div class="nav-right">
       <div class="search-wrap">
@@ -39,14 +39,27 @@
   <div class="drawer">
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="story.html">Our Story</a></li>
-      <li><a href="products.html">Our Products</a></li>
+      <li><a href="story.html">Tentang Perusahaan</a></li>
+      <li><a href="products.html">Produk Perusahaan</a></li>
       <li><a href="experience.html">Pengalaman</a></li>
     </ul>
   </div>
 </header>
-<section class="hero"></section>
+<section class="hero" data-interval="5000">
+  <!-- Cukup taruh img + data-title + data-year -->
+  <img class="hero-item" src="/produk-perusahaan/kontruksi/20170712_102614.jpg"
+       alt="Kontruksi WINS HOUSE" data-title="Kontruksi WINS HOUSE"
+       data-year="BANGUNAN MODULARR DARI PREFABRIKASI">
 
+  <img class="hero-item" src="/produk-perusahaan/kontruksi/20170711_164535.jpg"
+       alt="TITLE 2" data-title="Operasi Crane di Area Pondasi" data-year="Pengawas & rigger standby di sisi aman">
+
+  <img class="hero-item" src="/produk-perusahaan/kontruksi/20170712_081308.jpg"
+       alt="TITLE 3" data-title="Briefing K3 & Koordinasi" data-year="Bagi peran, cek alat ukur & titik pondasi">
+
+  <img class="hero-item" src="produk-perusahaan/p09-img02.png"
+       alt="INSTALASI SOFTWARE & CCTV" data-title="INSTALASI SOFTWARE & CCTV" data-year="Keamanan dan Software">
+</section>
 <!-- ============ STORY SECTION (REPLACE) ============ -->
 <section class="section" style="padding-top:90px">
   <div class="container story-layout">
@@ -54,7 +67,7 @@
     <!-- KIRI -->
     <div class="story-left">
       <div class="section-header align-left">
-        <h1 class="section-title">Our Story</h1>
+        <h1 class="section-title">Tentang Perusahaan</h1>
         <p class="section-subtitle">
           Sejak 2003 kami bertumbuh bersama pelanggan – menyediakan solusi navigasi, komunikasi,
           simulasi, dan layanan integrasi sistem.
@@ -95,8 +108,99 @@
       </div>
     </div>
 </section>
+<h3 class="mt-24 docs-title" id="docs">Produk Perusahaan Tersedia:</h3>
+      <div class="docs-wrap">
+        <div id="docsCarousel" class="docs-list" role="list" aria-label="Dokumen Perusahaan">
 
-      <h3 class="mt-24 docs-title" id="docs">Dokumen Perusahaan</h3>
+          <div class="document-card" role="listitem"
+              onclick="openDocumentModal('Akta Pendirian','', ['/produk-perusahaan/kontruksi/20170302_102215.jpg'])">
+            <img src="/produk-perusahaan/kontruksi/20170302_102215.jpg" class="document-image" alt="Akta Pendirian">
+            <div class="document-info">
+              <h4 class="document-title">Akta Pendirian</h4>
+              <p class="document-desc">Dokumen pendirian perusahaan</p>
+            </div>
+          </div>
+
+          <div class="document-card" role="listitem"
+              onclick="openDocumentModal('Akta Perubahan Terakhir','', ['/produk-perusahaan/kontruksi/20170302_102223.jpg'])">
+            <img src="/produk-perusahaan/kontruksi/20170302_102223.jpg" class="document-image" alt="Akta Perubahan Terakhir">
+            <div class="document-info">
+              <h4 class="document-title">Akta Perubahan Terakhir</h4>
+              <p class="document-desc">Perubahan anggaran dasar</p>
+            </div>
+          </div>
+
+          <div class="document-card" role="listitem"
+              onclick="openDocumentModal('PKT &amp; SKT','', ['/produk-perusahaan/kontruksi/IMG_0136.JPG'])">
+            <img src="/produk-perusahaan/kontruksi/IMG_0136.JPG" class="document-image" alt="PKT &amp; SKT">
+            <div class="document-info">
+              <h4 class="document-title">PKT &amp; SKT</h4>
+              <p class="document-desc">Pengukuhan &amp; Surat Keterangan Terdaftar</p>
+            </div>
+          </div>
+
+          <div class="document-card" role="listitem"
+              onclick="openDocumentModal('NPWP Badan Usaha','', ['/produk-perusahaan/kontruksi/IMG_0128.JPG'])">
+            <img src="/produk-perusahaan/kontruksi/IMG_0128.JPG" class="document-image square" alt="NPWP Badan Usaha">
+            <div class="document-info">
+              <h4 class="document-title">NPWP Badan Usaha</h4>
+              <p class="document-desc">Nomor Pokok Wajib Pajak</p>
+            </div>
+          </div>
+
+          <div class="document-card" role="listitem"
+              onclick="openDocumentModal('NIB Badan Usaha','', ['/produk-perusahaan/kontruksi/IMG-20170523-WA0014.jpg'])">
+            <img src="/produk-perusahaan/kontruksi/IMG-20170523-WA0014.jpg" class="document-image" alt="NIB Badan Usaha">
+            <div class="document-info">
+              <h4 class="document-title">NIB Badan Usaha</h4>
+              <p class="document-desc">Nomor Induk Berusaha</p>
+            </div>
+          </div>
+
+          <div class="document-card" role="listitem"
+              onclick="openDocumentModal('SIUP Badan Usaha','', ['/produk-perusahaan/kontruksi/IMG-20180115-WA0039.jpg'])">
+            <img src="/produk-perusahaan/kontruksi/IMG-20180115-WA0039.jpg" class="document-image" alt="SIUP Badan Usaha">
+            <div class="document-info">
+              <h4 class="document-title">SIUP Badan Usaha</h4>
+              <p class="document-desc">Surat Izin Usaha Perdagangan</p>
+            </div>
+          </div>
+
+          <div class="document-card" role="listitem"
+              onclick="openDocumentModal('IZIN TD-BUPP','', ['/produk-perusahaan/p08-img01.png'])">
+            <img src="/produk-perusahaan/p08-img01.png" class="document-image" alt="IZIN TD-BUPP">
+            <div class="document-info">
+              <h4 class="document-title">IZIN TD-BUPP</h4>
+              <p class="document-desc">Izin Badan Usaha Penunjang</p>
+            </div>
+          </div>
+
+          <div class="document-card" role="listitem"
+              onclick="openDocumentModal('SPT Badan Usaha','', ['/produk-perusahaan/p08-img03.png'])">
+            <img src="/produk-perusahaan/p08-img03.png" class="document-image" alt="SPT Badan Usaha">
+            <div class="document-info">
+              <h4 class="document-title">SPT Badan Usaha</h4>
+              <p class="document-desc">Pelaporan pajak tahunan</p>
+            </div>
+          </div>
+
+          <div class="document-card" role="listitem"
+              onclick="openDocumentModal('KSWP &amp; SK Tidak Pailit','', ['/produk-perusahaan/p09-img02.png'])">
+            <img src="/produk-perusahaan/p09-img02.png" class="document-image" alt="KSWP &amp; SK Tidak Pailit">
+            <div class="document-info">
+              <h4 class="document-title">KSWP &amp; SK Tidak Pailit</h4>
+              <p class="document-desc">Kepatuhan &amp; legalitas</p>
+            </div>
+          </div>
+        </div>
+        <button class="docs-float prev" data-docs-dir="-1" aria-label="Sebelumnya">‹</button>
+        <button class="docs-float next" data-docs-dir="1" aria-label="Berikutnya">›</button>
+        <h3 class="mt-24 docs-title" id="docs">Produk Perusahaan Lainnya:</h3>
+        <h3 class="mt-24 docs-title" id="docs">
+          <a href="products.html">Klik Di sini</a>
+        </h3>
+      </div>
+    <!-- <h3 class="mt-24 docs-title" id="docs">Dokumen Perusahaan</h3>
       <div class="docs-wrap">
         <div id="docsCarousel" class="docs-list" role="list" aria-label="Dokumen Perusahaan">
 
@@ -186,7 +290,7 @@
         </div>
         <button class="docs-float prev" data-docs-dir="-1" aria-label="Sebelumnya">‹</button>
         <button class="docs-float next" data-docs-dir="1" aria-label="Berikutnya">›</button>
-      </div>
+      </div> -->
 
 
 <!-- Modal -->

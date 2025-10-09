@@ -41,105 +41,98 @@ window.addEventListener("scroll", () => {
   else initDrawer();
 })();
 
-
 (function () {
-  const data = [
-    {
-      img: "/PT.-WBKS/images/4.png",
-      title: "WINS HOUSE",
-      year: "MODULARR BUILDING OF PREFABRICATION",
-    },
-    {
-      img: "/images/home/slide-2.jpg",
-      title: "TITTLE 2",
-      year: "DESK 2",
-    },
-    {
-      img: "/images/home/slide-3.jpg",
-      title: "TITTLE 3",
-      year: "DESK 3",
-    },
-    {
-      img: "/images/home/slide-4.jpg",
-      title: "TITTLE 4",
-      year: "DESK 4",
-    },
-    {
-      img: "/images/home/slide-5.jpg",
-      title: "TITTLE 5",
-      year: "DESK 5",
-    },
-  ];
-  const hero = document.querySelector(".hero");
-  if (!hero) return;
+  function readFromHtml(hero) {
+    const imgs = hero.querySelectorAll("img.hero-item");
+    if (!imgs.length) return null;
+    return [...imgs].map(img => ({
+      img: img.getAttribute("src") || "",
+      title: img.dataset.title || img.getAttribute("alt") || "",
+      year: img.dataset.year || ""
+    }));
+  }
 
-  const slides = data.map((s, i) => {
-    const el = document.createElement("div");
-    el.className = "slide" + (i === 0 ? " active" : "");
-    el.style.backgroundImage = `url('${s.img}')`;
-    hero.appendChild(el);
-    return el;
-  });
+  function readFromJson(hero) {
+    const el = hero.querySelector("script.hero-data[type='application/json']");
+    if (!el) return null;
+    try { return JSON.parse(el.textContent.trim()); }
+    catch (e) { console.error("Hero JSON invalid", e); return null; }
+  }
 
-  const overlay = document.createElement("div");
-  overlay.className = "hero-overlay";
-  hero.appendChild(overlay);
+  function initHero(hero, data, intervalMs) {
+    if (!Array.isArray(data) || data.length === 0) return;
 
-  const caption = document.createElement("div");
-  caption.className = "hero-caption";
-  caption.innerHTML = `<h2>${data[0].title}</h2><div class="year">${data[0].year}</div>`;
-  hero.appendChild(caption);
+    hero.innerHTML = "";
+    if (getComputedStyle(hero).position === "static") hero.style.position = "relative";
 
-  // Centered nav
-  const nav = document.createElement("div");
-  nav.className = "hero-nav";
-  nav.innerHTML = `
-    <button class="hero-btn" data-dir="-1" aria-label="Previous">‹</button>
-    <button class="hero-btn" data-dir="1" aria-label="Next">›</button>
-  `;
-  Object.assign(nav.style, {
-    position: "absolute",
-    inset: "0",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: "0 10px",
-    height: "100%",
-  });
-  hero.appendChild(nav);
+    const slides = data.map((s, i) => {
+      const slide = document.createElement("div");
+      slide.className = "slide" + (i === 0 ? " active" : "");
+      slide.style.backgroundImage = `url("${encodeURI(s.img)}")`;
+      hero.appendChild(slide);
+      return slide;
+    });
 
-  let idx = 0,
-    timer = null;
-  const show = (i) => {
-    idx = (i + data.length) % data.length;
-    slides.forEach((s, j) => s.classList.toggle("active", j === idx));
-    caption.innerHTML = `<h2>${data[idx].title}</h2><div class="year">${data[idx].year}</div>`;
-  };
-  const next = (d = 1) => show(idx + d);
-  const start = () => {
-    timer = setInterval(() => next(1), 5000);
-  };
-  const stop = () => {
-    if (timer) {
-      clearInterval(timer);
-      timer = null;
-    }
-  };
+    const overlay = document.createElement("div");
+    overlay.className = "hero-overlay";
+    hero.appendChild(overlay);
 
-  nav.addEventListener("click", (e) => {
-    const btn = e.target.closest("button");
-    if (!btn) return;
-    const dir = Number(btn.dataset.dir || 0);
-    if (!dir) return;
-    stop();
-    next(dir);
+    const caption = document.createElement("div");
+    caption.className = "hero-caption";
+    caption.innerHTML = `<h2>${data[0].title || ""}</h2><div class="year">${data[0].year || ""}</div>`;
+    hero.appendChild(caption);
+
+    const nav = document.createElement("div");
+    nav.className = "hero-nav";
+    nav.innerHTML = `
+      <button class="hero-btn" data-dir="-1" aria-label="Previous">‹</button>
+      <button class="hero-btn" data-dir="1" aria-label="Next">›</button>
+    `;
+    Object.assign(nav.style, {
+      position: "absolute",
+      inset: "0",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "0 10px",
+      height: "100%",
+      pointerEvents: "none"
+    });
+    nav.querySelectorAll("button").forEach(b => b.style.pointerEvents = "auto");
+    hero.appendChild(nav);
+
+    // State per hero
+    let idx = 0, timer = null;
+    const show = (i) => {
+      idx = (i + data.length) % data.length;
+      slides.forEach((s, j) => s.classList.toggle("active", j === idx));
+      caption.innerHTML = `<h2>${data[idx].title || ""}</h2><div class="year">${data[idx].year || ""}</div>`;
+    };
+    const next = (d = 1) => show(idx + d);
+    const start = () => { stop(); timer = setInterval(() => next(1), intervalMs); };
+    const stop  = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+    nav.addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      const dir = Number(btn.dataset.dir || 0);
+      if (!dir) return;
+      stop(); next(dir); start();
+    });
+
+    hero.addEventListener("mouseenter", stop);
+    hero.addEventListener("mouseleave", start);
     start();
-  });
+  }
 
-  hero.addEventListener("mouseenter", stop);
-  hero.addEventListener("mouseleave", start);
-  start();
+  // Init semua .hero (ambil dari HTML dulu; kalau kosong, coba JSON)
+  document.querySelectorAll(".hero").forEach((hero) => {
+    const intervalMs = Number(hero.getAttribute("data-interval")) || 5000;
+    const data = readFromHtml(hero) || readFromJson(hero) || [];
+    if (data.length) initHero(hero, data, intervalMs);
+  });
 })();
+
 
 // --- Simple search (enter -> buka halaman terkait) ---
 // --- Search dengan suggestions (filter realtime + keyboard) ---
@@ -152,6 +145,7 @@ window.addEventListener("scroll", () => {
     { title: 'Tentang Perusahaan',    url: 'story.html',     subtitle: 'Profil, visi-misi & dokumen',  icon: '📘', tags: 'story sejarah visi misi profil dokumen perusahaan' },
     { title: 'Dokumen Perusahaan',    url: 'story.html',     subtitle: 'dokumen',  icon: '📘', tags: 'dokumen perusahaan' },
     { title: 'Tentang Produk', url: 'products.html',  subtitle: 'Daftar produk & solusi',       icon: '🧩', tags: 'produk product solusi radio gateway cctv mep seragam' },
+    { title: 'Kontruksi', url: 'products.html',  subtitle: 'Daftar Kontruksi',       icon: '🧩', tags: 'kontruksi serta pembangunan' },
     { title: 'Pengalaman',   url: 'experience.html',subtitle: 'Track record proyek',           icon: '🏗️', tags: 'project pengalaman rekam jejak portofolio' },
   ];
 
@@ -999,3 +993,146 @@ function closeModal() {
   });
 })();
 
+// ===============================
+// HERO SLIDER: Flat Pack Classic
+// ===============================
+(function(){
+  const hero = document.getElementById('fpClassicHero');
+  if(!hero) return;
+
+  const track = hero.querySelector('.flatpack-classic-hero-track');
+  const slides = Array.from(track.querySelectorAll('img'));
+  const prev = hero.querySelector('.flatpack-classic-hero-nav.prev');
+  const next = hero.querySelector('.flatpack-classic-hero-nav.next');
+  let idx = 0;
+
+  function go(i){
+    idx = (i + slides.length) % slides.length;
+    track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+  }
+  prev.addEventListener('click', () => go(idx - 1));
+  next.addEventListener('click', () => go(idx + 1));
+
+  // swipe
+  let startX = 0, dragging = false;
+  hero.addEventListener('touchstart', e => {
+    dragging = true; startX = e.touches[0].clientX;
+    track.style.transition = 'none';
+  }, {passive:true});
+
+  hero.addEventListener('touchmove', e => {
+    if(!dragging) return;
+    const dx = e.touches[0].clientX - startX;
+    track.style.transform = 'translateX(calc(' + (-idx*100) + '% + ' + dx + 'px))';
+  }, {passive:true});
+
+  hero.addEventListener('touchend', e => {
+    track.style.transition = 'transform .35s ease';
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1)); else go(idx);
+    dragging = false;
+  });
+
+  // keyboard
+  window.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') go(idx - 1);
+    if (e.key === 'ArrowRight') go(idx + 1);
+  });
+})();
+
+// ===============================
+// LIGHTBOX: Flat Pack Classic
+// ===============================
+(function(){
+  const grid = document.getElementById('fpClassicModels');
+  if(!grid) return;
+
+  const lb = document.getElementById('fpClassicLightbox');
+  const lbImg = document.getElementById('fpClassicLbImg');
+  const lbClose = document.getElementById('fpClassicLbClose');
+  const lbPrev = document.getElementById('fpClassicLbPrev');
+  const lbNext = document.getElementById('fpClassicLbNext');
+  const lbCounter = document.getElementById('fpClassicLbCounter');
+
+  const items = Array.from(grid.querySelectorAll('.flatpack-classic-model'));
+  let idx = 0;
+
+  function open(i){
+    idx = (i + items.length) % items.length;
+    lbImg.src = items[idx].getAttribute('href');
+    lb.classList.add('show');
+    lb.setAttribute('aria-hidden', 'false');
+    lbCounter.textContent = (idx+1) + '/' + items.length;
+  }
+  function close(){
+    lb.classList.remove('show');
+    lb.setAttribute('aria-hidden', 'true');
+    lbImg.src = '';
+  }
+  function next(d=1){ open(idx + d); }
+
+  items.forEach((a, i) => {
+    a.addEventListener('click', e => { e.preventDefault(); open(i); });
+  });
+  lbClose.addEventListener('click', close);
+  lbPrev.addEventListener('click', () => next(-1));
+  lbNext.addEventListener('click', () => next(1));
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+
+  window.addEventListener('keydown', e => {
+    if (!lb.classList.contains('show')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') next(-1);
+    if (e.key === 'ArrowRight') next(1);
+  });
+})();
+// ===== Hero: auto aspect-ratio dari gambar aktif =====
+// // tambah ini
+(function(){
+  const hero  = document.querySelector('.flatpack-classic-hero');
+  const track = hero?.querySelector('.flatpack-classic-hero-track');
+  if(!hero || !track) return;
+
+  const slides = Array.from(track.querySelectorAll('img'));
+  let index = 0; // pastikan sinkron dengan slider-mu
+
+  // util: set rasio ke kontainer sesuai slide aktif
+  function applyAspect(i){
+    const img = slides[i];
+    if(!img) return;
+    const ar = (img.naturalWidth && img.naturalHeight)
+      ? (img.naturalWidth / img.naturalHeight)
+      : (img.width / Math.max(1,img.height));
+
+    // set CSS variable ke kontainer
+    hero.style.setProperty('--hero-ar', ar);
+    // tambahkan class portrait kalau rasio < 1
+    if(ar < 1) hero.classList.add('is-portrait');
+    else hero.classList.remove('is-portrait');
+  }
+
+  // panggil saat semua img sudah siap (handle cache & non-cache)
+  slides.forEach(img=>{
+    if(img.complete) return;
+    img.addEventListener('load', ()=>applyAspect(index), {once:true});
+  });
+
+  // inisialisasi
+  applyAspect(index);
+
+  // kalau kamu sudah punya tombol prev/next, panggil applyAspect() tiap ganti slide:
+  const prevBtn = hero.querySelector('.flatpack-classic-hero-nav.prev');
+  const nextBtn = hero.querySelector('.flatpack-classic-hero-nav.next');
+
+  function go(to){
+    index = (to + slides.length) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    applyAspect(index);
+  }
+
+  // opsional: wire ke tombol bawaanmu
+  prevBtn?.addEventListener('click', ()=>go(index-1));
+  nextBtn?.addEventListener('click', ()=>go(index+1));
+
+  // kalau slider-mu ganti index di tempat lain, cukup panggil go(newIndex) di sana.
+})();
