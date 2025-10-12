@@ -1,15 +1,12 @@
-/* ====== WBKS Site - Clean Theme (Deep Blue) ====== */
-
 /* ===========================
    1) ROOT & BASE
    =========================== */
 
 :root {
-  /* Brand + core palette */
-  --brand: #0a1f44; /* header/footer primary */
-  --brand-dark: #08213a; /* darker accent */
-  --brand-accent: #5cc2ff; /* accent for highlights/dots/bar */
-  --brand-soft: #e7eefb; /* subtle backgrounds */
+  --brand: #0a1f44;
+  --brand-dark: #08213a;
+  --brand-accent: #5cc2ff;
+  --brand-soft: #e7eefb;
 
   --text: #1f2937;
   --muted: #6b7280;
@@ -21,7 +18,6 @@
   --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 16px 35px rgba(0, 0, 0, 0.12);
 
-  /* Aliases for compatibility */
   --primary-color: var(--brand);
   --text-primary: var(--text);
   --text-secondary: var(--muted);
@@ -32,10 +28,10 @@
 }
 :root {
   --header-pad-y: 8px;
-  --logo-h: 94px; /* tinggi logo yg wajar di navbar */
-  --gap-x: 28px; /* jarak antar kolom */
-  --logo-h: 72px; /* tinggi tampilan logo */
-  --logo-ratio: 1.78; /* lebar/tinggi logo (contoh 16:9 ≈ 1.78) */
+  --logo-h: 94px;
+  --gap-x: 28px;
+  --logo-h: 72px;
+  --logo-ratio: 1.78;
   --logo-col: calc(var(--logo-h) * var(--logo-ratio));
 }
 
@@ -210,7 +206,7 @@ body {
 /* ====== KANAN (search + ikon) ====== */
 .nav-right {
   display: flex;
-  justify-content: flex-end; /* dorong ke kanan */
+  justify-content: flex-end; 
   align-items: center;
   gap: 16px;
 }
@@ -1008,11 +1004,11 @@ body {
   background: #fff;
   border-radius: 12px;
   box-shadow: var(--shadow-md);
-  overflow: hidden; /* header-radius tetap */
+  overflow: hidden;
 }
 
 .table-wrapper {
-  overflow-x: auto; /* scroll-horizontal jika perlu */
+  overflow-x: auto; 
   -webkit-overflow-scrolling: touch;
 }
 
@@ -1021,8 +1017,8 @@ body {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
-  table-layout: fixed; /* >>> bikin lebar kolom stabil */
-  min-width: 1200px; /* supaya struktur header 2-baris muat */
+  table-layout: fixed; 
+  min-width: 1200px; 
   font-size: 14px;
   line-height: 1.45;
 }
@@ -1062,16 +1058,16 @@ body {
 .experience-table th:nth-child(9),
 .experience-table td:nth-child(9) {
   width: 11%;
-} /* Tgl Selesai - BAST */
+} 
 
 /* Sel & header */
 .experience-table th,
 .experience-table td {
   padding: 12px 10px;
   border: 1px solid #e5e7eb;
-  vertical-align: top; /* teks nempel ke atas biar rapi */
+  vertical-align: top; 
   text-align: left;
-  word-break: break-word; /* jaga wrap */
+  word-break: break-word; 
   hyphens: auto;
 }
 
@@ -1082,7 +1078,6 @@ body {
   font-weight: 800;
 }
 
-/* perbaiki cell nomor */
 .center-align {
   text-align: center !important;
 }
@@ -1114,7 +1109,7 @@ body {
 }
 
 .pagination-info {
-  width: 100%; /* selalu di bawah tombol */
+  width: 100%; 
   text-align: center;
   color: var(--muted);
   margin-top: 6px;
@@ -1223,7 +1218,6 @@ body {
    12) RESPONSIVE
    =========================== */
 
-/* Mobile (<=480px) */
 @media (max-width: 480px) {
   .nav-container {
     grid-template-columns: auto auto 1fr;
@@ -1365,7 +1359,6 @@ body {
   }
 }
 
-/* Laptop (1025–1200px) */
 @media (min-width: 1025px) and (max-width: 1200px) {
   .story-layout {
     grid-template-columns: 1.15fr 0.85fr;
@@ -1376,7 +1369,6 @@ body {
   }
 }
 
-/* Desktop (>=1201px) */
 @media (min-width: 1201px) {
   .experience-table {
     min-width: 1200px;
@@ -1435,7 +1427,6 @@ body {
   background: #123466;
 }
 
-/* Sembunyikan ikon util header di mobile; tampilkan FAB */
 @media (max-width: 900px) {
   .util {
     display: none;
@@ -1451,7 +1442,7 @@ body {
   inset: 0;
   z-index: 1450;
   display: none;
-  align-items: flex-end; /* bottom sheet */
+  align-items: flex-end; 
   background: rgba(0, 0, 0, 0.45);
 }
 .search-overlay.show {
@@ -2257,22 +2248,20 @@ body {
 
 /* --- Header setiap item --- */
 .acc-summary {
-  list-style: none; /* hilangkan marker bawaan */
+  list-style: none; 
   cursor: pointer;
   user-select: none;
   padding: 16px 0;
   font-weight: 700;
   letter-spacing: 0.02em;
   position: relative;
-  color: #637381; /* abu-abu elegan seperti contoh */
+  color: #637381; 
 }
 
-/* garis pemisah antar item */
 .acc-item {
   border-bottom: 1px solid #e5e5e5;
 }
 
-/* sembunyikan marker bawaan Safari/Chrome */
 .acc-summary::-webkit-details-marker {
   display: none;
 }
@@ -2294,7 +2283,7 @@ body {
 /* panah menghadap bawah saat open */
 .acc-item[open] .acc-summary::after {
   transform: translateY(-50%) rotate(45deg);
-  border-color: #f28b1a; /* oranye seperti screenshot */
+  border-color: #f28b1a; 
 }
 
 /* konten panel */
@@ -2313,12 +2302,10 @@ body {
   }
 }
 
-/* opsional: hover state header */
 .acc-summary:hover {
   color: #2b2f33;
 }
 
-/* responsive kecil: rapikan padding */
 @media (max-width: 640px) {
   .acc-summary {
     padding: 14px 0;

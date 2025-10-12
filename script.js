@@ -774,13 +774,13 @@ function closeModal() {
     let rafId = null;
     let isPaused = false;
     const SPEED_PX_PER_FRAME = 0.6; 
-    const cardWidth = () => (wrap.querySelector('.document-card')?.getBoundingClientRect().width || 300) + 18; // include gap
+    const cardWidth = () => (wrap.querySelector('.document-card')?.getBoundingClientRect().width || 300) + 18; 
 
     const tick = () => {
       if (!isPaused) {
         wrap.scrollLeft += SPEED_PX_PER_FRAME; 
         if (wrap.scrollLeft + wrap.clientWidth + 1 >= wrap.scrollWidth) {
-          wrap.scrollLeft = 0; // instant loop
+          wrap.scrollLeft = 0; 
         }
       }
       rafId = requestAnimationFrame(tick);
@@ -799,13 +799,12 @@ function closeModal() {
       btn.addEventListener('click', () => {
         const dir = Number(btn.getAttribute('data-docs-dir')||1);
         const step = cardWidth() * dir;
-        isPaused = true; // pause during manual nav
+        isPaused = true; 
         wrap.scrollBy({left: step, behavior: 'smooth'});
         setTimeout(() => { isPaused = false; }, 600);
       });
     });
 
-    // Drag / swipe
     let isDown=false, startX=0, scrollStart=0;
     const onDown = (e) => {
       isDown = true; startX = ('touches' in e ? e.touches[0].pageX : e.pageX); scrollStart = wrap.scrollLeft; isPaused = true;
@@ -941,11 +940,9 @@ function closeModal() {
   const lbNext = document.getElementById('lbNext');
   const lbCounter = document.getElementById('lbCounter');
 
-  // kumpulkan semua anchor model (urut tampil)
   const items = Array.from(grid.querySelectorAll('.model-card'));
   let idx = 0;
 
-  // buka lightbox
   function open(i){
     idx = (i + items.length) % items.length;
     const href = items[idx].getAttribute('href');
@@ -955,18 +952,15 @@ function closeModal() {
     updateCounter();
   }
 
-  // tutup
   function close(){
     lb.classList.remove('show');
     lb.setAttribute('aria-hidden', 'true');
     lbImg.src = '';
   }
 
-  // navigasi
   function next(d=1){ open(idx + d); }
   function updateCounter(){ lbCounter.textContent = (idx+1) + '/' + items.length; }
 
-  // event: klik kartu
   items.forEach((a, i) => {
     a.addEventListener('click', (e) => {
       e.preventDefault();
@@ -974,17 +968,14 @@ function closeModal() {
     });
   });
 
-  // event: tombol
   lbClose.addEventListener('click', close);
   lbPrev.addEventListener('click', () => next(-1));
   lbNext.addEventListener('click', () => next(1));
 
-  // klik backdrop menutup
   lb.addEventListener('click', (e) => {
     if (e.target === lb) close();
   });
 
-  // keyboard
   window.addEventListener('keydown', (e) => {
     if (!lb.classList.contains('show')) return;
     if (e.key === 'Escape') close();
@@ -1087,16 +1078,14 @@ function closeModal() {
   });
 })();
 // ===== Hero: auto aspect-ratio dari gambar aktif =====
-// // tambah ini
 (function(){
   const hero  = document.querySelector('.flatpack-classic-hero');
   const track = hero?.querySelector('.flatpack-classic-hero-track');
   if(!hero || !track) return;
 
   const slides = Array.from(track.querySelectorAll('img'));
-  let index = 0; // pastikan sinkron dengan slider-mu
+  let index = 0; 
 
-  // util: set rasio ke kontainer sesuai slide aktif
   function applyAspect(i){
     const img = slides[i];
     if(!img) return;
@@ -1104,23 +1093,18 @@ function closeModal() {
       ? (img.naturalWidth / img.naturalHeight)
       : (img.width / Math.max(1,img.height));
 
-    // set CSS variable ke kontainer
     hero.style.setProperty('--hero-ar', ar);
-    // tambahkan class portrait kalau rasio < 1
     if(ar < 1) hero.classList.add('is-portrait');
     else hero.classList.remove('is-portrait');
   }
 
-  // panggil saat semua img sudah siap (handle cache & non-cache)
   slides.forEach(img=>{
     if(img.complete) return;
     img.addEventListener('load', ()=>applyAspect(index), {once:true});
   });
 
-  // inisialisasi
   applyAspect(index);
 
-  // kalau kamu sudah punya tombol prev/next, panggil applyAspect() tiap ganti slide:
   const prevBtn = hero.querySelector('.flatpack-classic-hero-nav.prev');
   const nextBtn = hero.querySelector('.flatpack-classic-hero-nav.next');
 
@@ -1130,17 +1114,14 @@ function closeModal() {
     applyAspect(index);
   }
 
-  // opsional: wire ke tombol bawaanmu
   prevBtn?.addEventListener('click', ()=>go(index-1));
   nextBtn?.addEventListener('click', ()=>go(index+1));
 
-  // kalau slider-mu ganti index di tempat lain, cukup panggil go(newIndex) di sana.
 })();
   document.addEventListener('click', function (e) {
     const sum = e.target.closest('.acc-summary');
     if (!sum) return;
-    const item = sum.parentElement; // <details>
-    // tunggu state toggle selesai
+    const item = sum.parentElement;
     requestAnimationFrame(() => {
       if (item.open) {
         document.querySelectorAll('.acc-item[open]').forEach(d => {
