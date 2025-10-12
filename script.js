@@ -813,7 +813,7 @@ function closeModal() {
   else initDocsCarousel();
 })();
 
-// ===== Documents Carousel: auto-scroll R->L + loop + manual =====
+// ===== Documents Carousel =====
 (function(){
   function initDocsCarousel(){
     const list = document.getElementById('docsCarousel');
