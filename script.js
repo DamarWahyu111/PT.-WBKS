@@ -1136,3 +1136,16 @@ function closeModal() {
 
   // kalau slider-mu ganti index di tempat lain, cukup panggil go(newIndex) di sana.
 })();
+  document.addEventListener('click', function (e) {
+    const sum = e.target.closest('.acc-summary');
+    if (!sum) return;
+    const item = sum.parentElement; // <details>
+    // tunggu state toggle selesai
+    requestAnimationFrame(() => {
+      if (item.open) {
+        document.querySelectorAll('.acc-item[open]').forEach(d => {
+          if (d !== item) d.removeAttribute('open');
+        });
+      }
+    });
+  });
