@@ -12,7 +12,6 @@ window.addEventListener("scroll", () => {
     const drawer = document.querySelector('.drawer');
     if(!btn || !drawer) return;
 
-    // Buat backdrop jika belum ada
     let backdrop = document.querySelector('.drawer-backdrop');
     if(!backdrop){
       backdrop = document.createElement('div');
@@ -101,7 +100,6 @@ window.addEventListener("scroll", () => {
     nav.querySelectorAll("button").forEach(b => b.style.pointerEvents = "auto");
     hero.appendChild(nav);
 
-    // State per hero
     let idx = 0, timer = null;
     const show = (i) => {
       idx = (i + data.length) % data.length;
@@ -125,7 +123,6 @@ window.addEventListener("scroll", () => {
     start();
   }
 
-  // Init semua .hero (ambil dari HTML dulu; kalau kosong, coba JSON)
   document.querySelectorAll(".hero").forEach((hero) => {
     const intervalMs = Number(hero.getAttribute("data-interval")) || 5000;
     const data = readFromHtml(hero) || readFromJson(hero) || [];
@@ -140,7 +137,6 @@ window.addEventListener("scroll", () => {
   const input = document.querySelector('.search-input');
   if (!input) return;
 
-  // Data yang muncul di suggestion (boleh kamu tambah produk/halaman lain)
   const items = [
     { title: 'Tentang Perusahaan',    url: 'story.html',     subtitle: 'Profil, visi-misi & dokumen',  icon: '📘', tags: 'story sejarah visi misi profil dokumen perusahaan' },
     { title: 'Dokumen Perusahaan',    url: 'story.html',     subtitle: 'dokumen',  icon: '📘', tags: 'dokumen perusahaan' },
@@ -149,13 +145,12 @@ window.addEventListener("scroll", () => {
     { title: 'Pengalaman',   url: 'experience.html',subtitle: 'Track record proyek',           icon: '🏗️', tags: 'project pengalaman rekam jejak portofolio' },
   ];
 
-  // Buat container dropdown di bawah input
   const wrap = input.closest('.search-wrap');
   const box  = document.createElement('div');
   box.className = 'suggest';
   wrap.appendChild(box);
 
-  let selIndex = -1;       // index item yang di-highlight pakai panah
+  let selIndex = -1;       
   let lastList = [];
 
   const wordStartsWith = (text, q) =>
@@ -188,13 +183,11 @@ window.addEventListener("scroll", () => {
     selIndex = -1;
   };
 
-  // Ketik -> filter
   input.addEventListener('input', () => {
     lastList = filter(input.value);
     render(lastList);
   });
 
-  // Navigasi keyboard
   input.addEventListener('keydown', (e) => {
     const links = box.querySelectorAll('a');
     if (e.key === 'ArrowDown') {
@@ -212,7 +205,6 @@ window.addEventListener("scroll", () => {
       if (selIndex >= 0 && links[selIndex]) {
         window.location.href = links[selIndex].getAttribute('href');
       } else {
-        // fallback: perilaku lama (Enter tanpa pilih)
         const q = input.value.trim().toLowerCase();
         const hit = items.find(it => (it.title + ' ' + it.tags).toLowerCase().includes(q));
         window.location.href = hit ? hit.url : 'products.html';
@@ -222,21 +214,17 @@ window.addEventListener("scroll", () => {
     }
   });
 
-  // Klik mouse
   box.addEventListener('mousedown', (e) => {
     const a = e.target.closest('a');
     if (!a) return;
-    // mousedown supaya tidak tertutup blur lebih dulu
     window.location.href = a.getAttribute('href');
   });
 
-  // Tutup saat blur (beri delay kecil biar klik sempat terbaca)
   input.addEventListener('blur', () => setTimeout(() => box.classList.remove('show'), 120));
 })();
 
-// ====== EXPERIENCE (tabel saja; versi kartu/mobile dihapus) ======
+// ====== EXPERIENCE ======
 
-// Vision/Mission tabs (kalau dipakai di halaman lain)
 function switchTab(tab) {
   document
     .querySelectorAll(".vm-tab")
@@ -248,7 +236,6 @@ function switchTab(tab) {
   if (target) target.classList.add("active");
 }
 
-// ---- Data pengalaman (penuh) ----
 const experienceData = [
   {
     no: 1,
