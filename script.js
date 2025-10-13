@@ -991,7 +991,6 @@ function closeModal() {
   prev.addEventListener('click', () => go(idx - 1));
   next.addEventListener('click', () => go(idx + 1));
 
-  // swipe
   let startX = 0, dragging = false;
   hero.addEventListener('touchstart', e => {
     dragging = true; startX = e.touches[0].clientX;
@@ -1011,7 +1010,6 @@ function closeModal() {
     dragging = false;
   });
 
-  // keyboard
   window.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft') go(idx - 1);
     if (e.key === 'ArrowRight') go(idx + 1);
