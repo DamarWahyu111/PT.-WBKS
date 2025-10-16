@@ -2314,3 +2314,193 @@ body {
     padding: 12px 0 18px;
   }
 }
+
+/* ====== GES HVDC Rack Mounted – TABEL SPESIFIKASI ====== */
+
+/* 1) Wrapper: memungkinkan scroll horizontal di layar kecil */
+.ges-hvdc-rm .spec-wrap {
+  overflow-x: auto;
+}
+
+/* 2) Tabel dasar */
+.ges-hvdc-rm .spec-table {
+  width: 100%;
+  border-collapse: separate; /* border rapi seperti pada gambar */
+  border-spacing: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* 3) Sel umum (warna border & padding mengikuti nuansa gambar) */
+.ges-hvdc-rm .spec-table th,
+.ges-hvdc-rm .spec-table td {
+  border: 1px solid #1bb9df; /* biru toska */
+  padding: 10px 12px;
+  vertical-align: middle;
+  background: #ffffff;
+}
+
+/* 4) Header kolom: bar MODEL + nama model */
+.ges-hvdc-rm .spec-table thead th {
+  background: #11b7df;  /* biru toska solid seperti gambar */
+  color: #ffffff;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* 5) Label parameter di kolom kiri */
+.ges-hvdc-rm .spec-table .row-label {
+  text-align: left;
+  font-weight: 600;
+  background: #f7feff; /* putih kebiruan tipis */
+  white-space: nowrap;
+}
+
+/* 6) Judul-bagian: PHYSICAL, ELECTRICAL, BMS, OPERATION */
+.ges-hvdc-rm .spec-table tr.section th {
+  background: #08b6de; /* strip biru bagian */
+  color: #ffffff;
+  font-weight: 700;
+  text-align: left;
+}
+
+/* 7) Utilitas: mencegah angka/teks pendek terpecah */
+.ges-hvdc-rm .spec-table .nowrap {
+  white-space: nowrap;
+}
+/* ===========================
+   MONOFACIAL MODULE (ISGEN) — BASE + RAPET + FIX CURVES
+   Scoped ke .card-isgen agar tidak bentrok dengan style lain
+   =========================== */
+
+/* Grid utama (rapet) */
+.card-isgen .isgen-grid{
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;   /* kiri lebih lebar utk gambar */
+  gap: 10px 12px;                      /* jarak antar kolom/baris */
+}
+
+/* Section box */
+.card-isgen .box{
+  border: 1px solid #d7d7d7;
+  background: #fff;
+  margin-bottom: 6px;                  /* jarak antar box */
+}
+
+/* Judul box */
+.card-isgen .box-title{
+  margin: 0;
+  padding: 8px 10px;
+  font-size: 12.5px;
+  letter-spacing: .03em;
+  font-weight: 700;
+  color: #2a2a2a;
+  border-bottom: 1px solid #d7d7d7;
+  text-transform: uppercase;
+}
+
+/* Posisi section di grid */
+.card-isgen .tech-drawings{ grid-column: 1;     grid-row: 1 / 3; }
+.card-isgen .mech-spec    { grid-column: 2;     grid-row: 1;     }
+.card-isgen .packing      { grid-column: 2;     grid-row: 2;     }
+.card-isgen .elec-char    { grid-column: 1 / -1;grid-row: 3;     }
+.card-isgen .ops          { grid-column: 1;     grid-row: 4;     }
+.card-isgen .temp-char    { grid-column: 2;     grid-row: 4;     }
+.card-isgen .curves       { grid-column: 1 / -1;grid-row: 5;     }
+
+/* Padding konten dalam box */
+.card-isgen .box > *:not(.box-title){
+  padding: 8px 10px;
+}
+
+/* Tabel */
+.card-isgen .spec{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.card-isgen .spec th,
+.card-isgen .spec td{
+  border: 1px solid #3a3a3a;          /* garis tabel gelap */
+  padding: 6px 8px;                    /* baris lebih ringkas */
+  vertical-align: middle;
+  background: #fff;
+}
+.card-isgen .spec thead th{
+  font-weight: 700;
+  text-align: center;
+  background: #f2f2f2;
+  color: #222;
+}
+.card-isgen .row-label{                /* kolom label kiri */
+  width: 40%;
+  font-weight: 600;
+  background: #fbfbfb;
+}
+.card-isgen .first-col{
+  width: 40%;
+  text-align: left;
+}
+.card-isgen .elec-char .note{
+  margin: 6px 10px 4px;
+  font-size: 12px;
+  color: #666;
+  padding: 0;
+}
+
+/* Kurva (dua kolom) — sejajar & full width */
+.card-isgen .curves-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 8px 10px 10px;
+  justify-items: stretch;              /* isi lebar kolom */
+  align-items: start;
+}
+.card-isgen .curve{ display: grid; }   /* biar child stretch */
+.card-isgen .curve .documents-grid.one .document-card{
+  width: 100%;
+  max-width: none;                      /* override batasan global */
+}
+.card-isgen .curve .documents-grid.one .document-image{
+  width: 100%;
+  height: 260px;                        /* samakan tinggi preview */
+  object-fit: cover;
+}
+
+/* Dokumen grid single kolom (gambar penuh box) */
+.card-isgen .documents-grid.one{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+/* Gambar technical drawings juga full width */
+.card-isgen .tech-drawings .documents-grid.one .document-card{
+  width: 100%;
+  max-width: none;
+}
+.card-isgen .tech-drawings .documents-grid.one .document-image{
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+/* Responsif */
+@media (max-width: 1024px){
+  .card-isgen .isgen-grid{
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .card-isgen .tech-drawings,
+  .card-isgen .mech-spec,
+  .card-isgen .packing,
+  .card-isgen .elec-char,
+  .card-isgen .ops,
+  .card-isgen .temp-char,
+  .card-isgen .curves{
+    grid-column: 1; grid-row: auto;
+  }
+  .card-isgen .curves-grid{ grid-template-columns: 1fr; }
+}

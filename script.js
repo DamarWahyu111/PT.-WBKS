@@ -971,9 +971,6 @@ function closeModal() {
   });
 })();
 
-// ===============================
-// HERO SLIDER: Flat Pack Classic
-// ===============================
 (function(){
   const hero = document.getElementById('fpClassicHero');
   if(!hero) return;
@@ -1107,11 +1104,11 @@ function closeModal() {
     const sum = e.target.closest('.acc-summary');
     if (!sum) return;
     const item = sum.parentElement;
+    const container = item.parentElement;   
     requestAnimationFrame(() => {
-      if (item.open) {
-        document.querySelectorAll('.acc-item[open]').forEach(d => {
-          if (d !== item) d.removeAttribute('open');
-        });
-      }
+      if (!item.open) return; 
+      Array.from(container.children)
+        .filter(el => el !== item && el.classList?.contains('acc-item') && el.hasAttribute('open'))
+        .forEach(el => el.removeAttribute('open'));
     });
   });
