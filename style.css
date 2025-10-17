@@ -206,7 +206,7 @@ body {
 /* ====== KANAN (search + ikon) ====== */
 .nav-right {
   display: flex;
-  justify-content: flex-end; 
+  justify-content: flex-end;
   align-items: center;
   gap: 16px;
 }
@@ -1008,7 +1008,7 @@ body {
 }
 
 .table-wrapper {
-  overflow-x: auto; 
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -1017,8 +1017,8 @@ body {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
-  table-layout: fixed; 
-  min-width: 1200px; 
+  table-layout: fixed;
+  min-width: 1200px;
   font-size: 14px;
   line-height: 1.45;
 }
@@ -1058,16 +1058,16 @@ body {
 .experience-table th:nth-child(9),
 .experience-table td:nth-child(9) {
   width: 11%;
-} 
+}
 
 /* Sel & header */
 .experience-table th,
 .experience-table td {
   padding: 12px 10px;
   border: 1px solid #e5e7eb;
-  vertical-align: top; 
+  vertical-align: top;
   text-align: left;
-  word-break: break-word; 
+  word-break: break-word;
   hyphens: auto;
 }
 
@@ -1109,7 +1109,7 @@ body {
 }
 
 .pagination-info {
-  width: 100%; 
+  width: 100%;
   text-align: center;
   color: var(--muted);
   margin-top: 6px;
@@ -1442,7 +1442,7 @@ body {
   inset: 0;
   z-index: 1450;
   display: none;
-  align-items: flex-end; 
+  align-items: flex-end;
   background: rgba(0, 0, 0, 0.45);
 }
 .search-overlay.show {
@@ -2248,14 +2248,14 @@ body {
 
 /* --- Header setiap item --- */
 .acc-summary {
-  list-style: none; 
+  list-style: none;
   cursor: pointer;
   user-select: none;
   padding: 16px 0;
   font-weight: 700;
   letter-spacing: 0.02em;
   position: relative;
-  color: #637381; 
+  color: #637381;
 }
 
 .acc-item {
@@ -2283,7 +2283,7 @@ body {
 /* panah menghadap bawah saat open */
 .acc-item[open] .acc-summary::after {
   transform: translateY(-50%) rotate(45deg);
-  border-color: #f28b1a; 
+  border-color: #f28b1a;
 }
 
 /* konten panel */
@@ -2342,7 +2342,7 @@ body {
 
 /* 4) Header kolom: bar MODEL + nama model */
 .ges-hvdc-rm .spec-table thead th {
-  background: #11b7df;  /* biru toska solid seperti gambar */
+  background: #11b7df; /* biru toska solid seperti gambar */
   color: #ffffff;
   font-weight: 700;
   text-align: center;
@@ -2375,25 +2375,25 @@ body {
    =========================== */
 
 /* Grid utama (rapet) */
-.card-isgen .isgen-grid{
+.card-isgen .isgen-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;   /* kiri lebih lebar utk gambar */
-  gap: 10px 12px;                      /* jarak antar kolom/baris */
+  grid-template-columns: 1.2fr 1fr; /* kiri lebih lebar utk gambar */
+  gap: 10px 12px; /* jarak antar kolom/baris */
 }
 
 /* Section box */
-.card-isgen .box{
+.card-isgen .box {
   border: 1px solid #d7d7d7;
   background: #fff;
-  margin-bottom: 6px;                  /* jarak antar box */
+  margin-bottom: 6px; /* jarak antar box */
 }
 
 /* Judul box */
-.card-isgen .box-title{
+.card-isgen .box-title {
   margin: 0;
   padding: 8px 10px;
   font-size: 12.5px;
-  letter-spacing: .03em;
+  letter-spacing: 0.03em;
   font-weight: 700;
   color: #2a2a2a;
   border-bottom: 1px solid #d7d7d7;
@@ -2401,49 +2401,71 @@ body {
 }
 
 /* Posisi section di grid */
-.card-isgen .tech-drawings{ grid-column: 1;     grid-row: 1 / 3; }
-.card-isgen .mech-spec    { grid-column: 2;     grid-row: 1;     }
-.card-isgen .packing      { grid-column: 2;     grid-row: 2;     }
-.card-isgen .elec-char    { grid-column: 1 / -1;grid-row: 3;     }
-.card-isgen .ops          { grid-column: 1;     grid-row: 4;     }
-.card-isgen .temp-char    { grid-column: 2;     grid-row: 4;     }
-.card-isgen .curves       { grid-column: 1 / -1;grid-row: 5;     }
+.card-isgen .tech-drawings {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+.card-isgen .mech-spec {
+  grid-column: 2;
+  grid-row: 1;
+}
+.card-isgen .packing {
+  grid-column: 2;
+  grid-row: 2;
+}
+.card-isgen .elec-char {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+.card-isgen .ops {
+  grid-column: 1;
+  grid-row: 4;
+}
+.card-isgen .temp-char {
+  grid-column: 2;
+  grid-row: 4;
+}
+.card-isgen .curves {
+  grid-column: 1 / -1;
+  grid-row: 5;
+}
 
 /* Padding konten dalam box */
-.card-isgen .box > *:not(.box-title){
+.card-isgen .box > *:not(.box-title) {
   padding: 8px 10px;
 }
 
 /* Tabel */
-.card-isgen .spec{
+.card-isgen .spec {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
   line-height: 1.4;
 }
 .card-isgen .spec th,
-.card-isgen .spec td{
-  border: 1px solid #3a3a3a;          /* garis tabel gelap */
-  padding: 6px 8px;                    /* baris lebih ringkas */
+.card-isgen .spec td {
+  border: 1px solid #3a3a3a; /* garis tabel gelap */
+  padding: 6px 8px; /* baris lebih ringkas */
   vertical-align: middle;
   background: #fff;
 }
-.card-isgen .spec thead th{
+.card-isgen .spec thead th {
   font-weight: 700;
   text-align: center;
   background: #f2f2f2;
   color: #222;
 }
-.card-isgen .row-label{                /* kolom label kiri */
+.card-isgen .row-label {
+  /* kolom label kiri */
   width: 40%;
   font-weight: 600;
   background: #fbfbfb;
 }
-.card-isgen .first-col{
+.card-isgen .first-col {
   width: 40%;
   text-align: left;
 }
-.card-isgen .elec-char .note{
+.card-isgen .elec-char .note {
   margin: 6px 10px 4px;
   font-size: 12px;
   color: #666;
@@ -2451,45 +2473,46 @@ body {
 }
 
 /* Kurva (dua kolom) — sejajar & full width */
-.card-isgen .curves-grid{
+.card-isgen .curves-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   padding: 8px 10px 10px;
-  justify-items: stretch;              /* isi lebar kolom */
-  align-items: start;
+  justify-items: stretch; /* isi lebar kolom */
 }
-.card-isgen .curve{ display: grid; }   /* biar child stretch */
-.card-isgen .curve .documents-grid.one .document-card{
+.card-isgen .curve {
+  display: grid;
+} /* biar child stretch */
+.card-isgen .curve .documents-grid.one .document-card {
   width: 100%;
-  max-width: none;                      /* override batasan global */
+  max-width: none; /* override batasan global */
 }
-.card-isgen .curve .documents-grid.one .document-image{
+.card-isgen .curve .documents-grid.one .document-image {
   width: 100%;
-  height: 260px;                        /* samakan tinggi preview */
+  height: 260px; /* samakan tinggi preview */
   object-fit: cover;
 }
 
 /* Dokumen grid single kolom (gambar penuh box) */
-.card-isgen .documents-grid.one{
+.card-isgen .documents-grid.one {
   display: grid;
   grid-template-columns: 1fr;
   gap: 8px;
 }
 /* Gambar technical drawings juga full width */
-.card-isgen .tech-drawings .documents-grid.one .document-card{
+.card-isgen .tech-drawings .documents-grid.one .document-card {
   width: 100%;
   max-width: none;
 }
-.card-isgen .tech-drawings .documents-grid.one .document-image{
+.card-isgen .tech-drawings .documents-grid.one .document-image {
   width: 100%;
   height: 260px;
   object-fit: cover;
 }
 
 /* Responsif */
-@media (max-width: 1024px){
-  .card-isgen .isgen-grid{
+@media (max-width: 1024px) {
+  .card-isgen .isgen-grid {
     grid-template-columns: 1fr;
     gap: 10px;
   }
@@ -2499,8 +2522,108 @@ body {
   .card-isgen .elec-char,
   .card-isgen .ops,
   .card-isgen .temp-char,
-  .card-isgen .curves{
-    grid-column: 1; grid-row: auto;
+  .card-isgen .curves {
+    grid-column: 1;
+    grid-row: auto;
   }
-  .card-isgen .curves-grid{ grid-template-columns: 1fr; }
+  .card-isgen .curves-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ===== GRID & CARD (dipakai di dalam .acc-panel) ===== */
+.dsm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+@media (max-width: 520px) {
+  .dsm-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+}
+
+/* Judul di dalam grid: selalu full width */
+.dsm-grid > .inner-subtitle {
+  grid-column: 1 / -1;
+  margin: 24px 0 8px;
+}
+
+.dsm-card {
+  border: 1px solid #eef2f7;
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: transform .15s ease, box-shadow .15s ease;
+  align-self: start;
+}
+.dsm-card:hover { transform: translateY(-2px); box-shadow: 0 10px 18px rgba(0,0,0,.06); }
+
+.dsm-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10; /* fallback saat JS belum jalan */
+  background: #f3f4f6;
+}
+.dsm-media.is-landscape { aspect-ratio: 16 / 9; }
+.dsm-media.is-portrait  { aspect-ratio: 9 / 16; }
+
+.dsm-media > img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+/* ===== Mode: landscape “ke bawah” (height mengikuti konten) ===== */
+.dsm-grid.dsm-landscape-contain .dsm-media.is-landscape { aspect-ratio: auto; }
+.dsm-grid.dsm-landscape-contain .dsm-media.is-landscape > img {
+  position: static; width: 100%; height: auto; object-fit: contain;
+}
+
+/* Opsional: paksa semua tile jadi rasio tertentu jika dibutuhkan di section lain */
+.dsm-grid[data-dsm-force="16x9"] .dsm-media { aspect-ratio: 16 / 9; }
+.dsm-grid[data-dsm-force="9x16"] .dsm-media { aspect-ratio: 9 / 16; }
+/* 2 kolom: kiri = landscape bertumpuk ke bawah, kanan = portrait */
+.dsm-two-col-pin{
+  grid-template-columns: minmax(260px,1fr) minmax(260px,1fr);
+  align-items: start;
+  grid-auto-flow: row dense;   /* <-- penting agar item boleh mengisi slot awal */
+  column-gap: 24px;             /* opsional, buat jarak antar kolom */
+  row-gap: 16px;
+}
+
+/* pin kolom */
+.dsm-two-col-pin > .dsm-pin-left  { grid-column: 1; }
+.dsm-two-col-pin > .dsm-pin-right { grid-column: 2; }
+
+/* pastikan portrait pertama tepat di kanan ATAS */
+.dsm-two-col-pin > .dsm-pin-right:first-of-type { grid-row: 1; }
+/* === 2 kolom khusus untuk kombinasi horizontal (kiri) + portrait (kanan) === */
+.dsm-duo{
+  display:grid;
+  grid-template-columns:minmax(260px,1fr) minmax(260px,1fr);
+  column-gap:24px;
+  row-gap:16px;
+  align-items:start;
+}
+
+/* Tiap kolom menumpuk item ke bawah */
+.dsm-duo__col{ display:grid; gap:16px; }
+
+/* Mobile: jadi 1 kolom */
+@media (max-width:700px){
+  .dsm-duo{ grid-template-columns:1fr; }
+}
+
+/* --- Card behaviour khusus --- */
+/* Horizontal: gambar tampil penuh, tinggi mengikuti konten (no crop) */
+.dsm-card--horizontal .dsm-media{ aspect-ratio:auto; }
+.dsm-card--horizontal .dsm-media>img{
+  position:static; width:100%; height:auto; object-fit:contain; display:block;
+}
+
+/* Portrait: tetap 9:16 (seperti sebelumnya) */
+.dsm-card--portrait .dsm-media{ aspect-ratio:9/16; }
+.dsm-card--portrait .dsm-media>img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
 }

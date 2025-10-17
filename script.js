@@ -1112,3 +1112,33 @@ function closeModal() {
         .forEach(el => el.removeAttribute('open'));
     });
   });
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.dsm-grid').forEach(grid => {
+    const force = grid.getAttribute('data-dsm-force'); // boleh kosong
+    const useContainForLandscape = grid.classList.contains('dsm-landscape-contain');
+
+    grid.querySelectorAll('.dsm-media > img').forEach(img => {
+      const apply = () => {
+        const wrap = img.parentElement;
+        if (!wrap) return;
+
+        wrap.classList.remove('is-landscape', 'is-portrait');
+
+        // jika tidak memakai mode contain & ada "force", ikuti force
+        if (!useContainForLandscape && (force === '16x9' || force === '9x16')) {
+          wrap.classList.add(force === '16x9' ? 'is-landscape' : 'is-portrait');
+          return;
+        }
+
+        // default: orientasi otomatis
+        if (img.naturalWidth && img.naturalHeight) {
+          wrap.classList.add(img.naturalWidth >= img.naturalHeight ? 'is-landscape' : 'is-portrait');
+        }
+      };
+
+      if (img.complete) apply();
+      img.addEventListener('load', apply);
+    });
+  });
+});
+
