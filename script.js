@@ -1059,7 +1059,7 @@ function closeModal() {
     if (e.key === 'ArrowRight') next(1);
   });
 })();
-// ===== Hero: auto aspect-ratio dari gambar aktif =====
+
 (function(){
   const hero  = document.querySelector('.flatpack-classic-hero');
   const track = hero?.querySelector('.flatpack-classic-hero-track');
@@ -1124,13 +1124,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         wrap.classList.remove('is-landscape', 'is-portrait');
 
-        // jika tidak memakai mode contain & ada "force", ikuti force
         if (!useContainForLandscape && (force === '16x9' || force === '9x16')) {
           wrap.classList.add(force === '16x9' ? 'is-landscape' : 'is-portrait');
           return;
         }
 
-        // default: orientasi otomatis
         if (img.naturalWidth && img.naturalHeight) {
           wrap.classList.add(img.naturalWidth >= img.naturalHeight ? 'is-landscape' : 'is-portrait');
         }
