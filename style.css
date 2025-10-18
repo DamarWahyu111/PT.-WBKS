@@ -2288,6 +2288,20 @@ body {
   padding: 16px 0 24px;
   animation: acc-reveal 0.25s ease;
 }
+
+
+details.acc-item > summary.acc-summary::after {
+  transform: translateY(-50%) rotate(-45deg) !important;
+  border-right-color: #c2c7cc !important;
+  border-bottom-color: #c2c7cc !important;
+}
+
+details.acc-item[open] > summary.acc-summary::after {
+  transform: translateY(-50%) rotate(45deg) !important;
+  border-right-color: #f28b1a !important;
+  border-bottom-color: #f28b1a !important;
+}
+
 @keyframes acc-reveal {
   from {
     opacity: 0;
